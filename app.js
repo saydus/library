@@ -16,7 +16,7 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://saydus:<password>@cluster0-ltdac.mongodb.net/test?retryWrites=true&w=majority';
+var mongoDB = 'mongodb+srv://saydus:Duraselwtf0707!@cluster0-ltdac.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, {useNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error'));
