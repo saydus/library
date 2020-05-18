@@ -5,7 +5,7 @@
 npm start
 `<br/>
 ## Starting an application using nodemon for convinient development 
-'
+`
 DEBUG=express-locallibrary-tutorial:* npm run devstart   
-'<br/> 
+`<br/> 
 An express app for a library to manage its book database.
