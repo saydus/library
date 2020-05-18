@@ -1,10 +1,9 @@
 extends layout
 
 block content
-  h1 #{title}: #{book.title}
-  p= book.author
-  | Summary:
-  p= book.genre 
+  h1 #{title}: #{book.title} 
+  strong Summary:
+  p= book.summary 
   
   if book_instances.length
   
