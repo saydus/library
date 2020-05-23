@@ -153,13 +153,13 @@ exports.bookinstance_update_post = [
     // Validate fields.
     body('imprint', 'Imprint must not be empty.').trim().isLength({ min: 1 }),
     body('book', 'Book must not be empty.').trim().isLength({ min: 1 }),
-    body('due_back', 'Date must not be empty.').trim().isLength({ min: 1 }),
+    body('due_back', 'Date must not be empty.').trim().isLength({ min: 1 }).isISO8601(),
     body('status', 'Status must not be empty').trim().isLength({ min: 1 }),
 
     // Sanitize fields.
     sanitizeBody('book').escape(),
     sanitizeBody('imprint').escape(),
-    sanitizeBody('due_back').escape(),
+    sanitizeBody('due_back').toDate(),
     sanitizeBody('status').escape(), 
 
     // Process request after validation and sanitization.
