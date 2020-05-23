@@ -188,19 +188,13 @@ exports.bookinstance_update_post = [
             }, function(err, results) {
                 if (err) { return next(err); }
 
-                // Mark our selected genres as checked.
-                for (let i = 0; i < results.genres.length; i++) {
-                    if (book.genre.indexOf(results.genres[i]._id) > -1) {
-                        results.genres[i].checked='true';
-                    }
-                }
                 res.render('bookinstance_form', {  title: 'Update Book Instance', book_list: results.book_list, bookinstance: results.bookinstance, errors: errors.array() });
             });
             return;
         }
         else {
             // Data from form is valid. Update the record.
-            Book.findByIdAndUpdate(req.params.id, bookinstance, {}, function (err,thebookinstance) {
+            BookInstance.findByIdAndUpdate(req.params.id, bookinstance, {}, function (err,thebookinstance) {
                 if (err) { return next(err); }
                    // Successful - redirect to book detail page.
                    res.redirect(thebookinstance.url);
