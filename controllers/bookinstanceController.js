@@ -149,30 +149,18 @@ exports.bookinstance_update_get = function(req, res) {
 
 // Handle bookinstance update on POST.
 exports.bookinstance_update_post = [
-
-    // Convert the genre to an array
-    (req, res, next) => {
-        if(!(req.body.genre instanceof Array)){
-            if(typeof req.body.genre==='undefined')
-            req.body.genre=[];
-            else
-            req.body.genre=new Array(req.body.genre);
-        }
-        next();
-    },
    
     // Validate fields.
-    body('title', 'Title must not be empty.').trim().isLength({ min: 1 }),
-    body('author', 'Author must not be empty.').trim().isLength({ min: 1 }),
-    body('summary', 'Summary must not be empty.').trim().isLength({ min: 1 }),
-    body('isbn', 'ISBN must not be empty').trim().isLength({ min: 1 }),
+    body('imprint', 'Imprint must not be empty.').trim().isLength({ min: 1 }),
+    body('book', 'Book must not be empty.').trim().isLength({ min: 1 }),
+    body('due_back', 'Date must not be empty.').trim().isLength({ min: 1 }),
+    body('status', 'Status must not be empty').trim().isLength({ min: 1 }),
 
     // Sanitize fields.
-    sanitizeBody('title').escape(),
-    sanitizeBody('author').escape(),
-    sanitizeBody('summary').escape(),
-    sanitizeBody('isbn').escape(),
-    sanitizeBody('genre.*').escape(),
+    sanitizeBody('book').escape(),
+    sanitizeBody('imprint').escape(),
+    sanitizeBody('due_back').escape(),
+    sanitizeBody('status').escape(), 
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -181,13 +169,12 @@ exports.bookinstance_update_post = [
         const errors = validationResult(req);
 
         // Create a Book object with escaped/trimmed data and old id.
-        var book = new Book(
-          { title: req.body.title,
-            author: req.body.author,
-            summary: req.body.summary,
-            isbn: req.body.isbn,
-            genre: (typeof req.body.genre==='undefined') ? [] : req.body.genre,
-            _id:req.params.id //This is required, or a new ID will be assigned!
+        var bookinstance = new BookInstance(
+          { book: req.body.book,
+            imprint: req.body.imprint,
+            status: req.body.status,
+            due_back: req.body.due_back,
+            _id: req.params.id //Assign the old ID
            });
 
         if (!errors.isEmpty()) {
@@ -195,12 +182,9 @@ exports.bookinstance_update_post = [
 
             // Get all authors and genres for form.
             async.parallel({
-                authors: function(callback) {
-                    Author.find(callback);
-                },
-                genres: function(callback) {
-                    Genre.find(callback);
-                },
+                book_list: function(callback) {
+                    Book.find(callback);
+                } 
             }, function(err, results) {
                 if (err) { return next(err); }
 
@@ -210,16 +194,16 @@ exports.bookinstance_update_post = [
                         results.genres[i].checked='true';
                     }
                 }
-                res.render('book_form', { title: 'Update Book',authors: results.authors, genres: results.genres, book: book, errors: errors.array() });
+                res.render('bookinstance_form', {  title: 'Update Book Instance', book_list: results.book_list, bookinstance: results.bookinstance, errors: errors.array() });
             });
             return;
         }
         else {
             // Data from form is valid. Update the record.
-            Book.findByIdAndUpdate(req.params.id, book, {}, function (err,thebook) {
+            Book.findByIdAndUpdate(req.params.id, bookinstance, {}, function (err,thebookinstance) {
                 if (err) { return next(err); }
                    // Successful - redirect to book detail page.
-                   res.redirect(thebook.url);
+                   res.redirect(thebookinstance.url);
                 });
         }
     }

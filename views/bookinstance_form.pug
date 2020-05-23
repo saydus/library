@@ -26,7 +26,7 @@ block content
       select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
         - let status_list = ['Available', 'Loaned', 'Reserved', 'Maintenance']
         for status_value in status_list
-          if bookinstance.status === status_value
+          if bookinstance && bookinstance.status === status_value
             option(value=status_value selected='selected') #{status_value}
           else 
             option(value=status_value) #{status_value}
