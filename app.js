@@ -9,9 +9,13 @@ var usersRouter = require('./routes/users');
 var wikiRouter = require('./routes/wiki');
 var catalogRouter = require('./routes/catalog');  
 
+var compression = require('compression');
+// Use helmet to protect from vulnerabilities
+var helmet = require('helmet');
+
 
 var app = express();
-
+app.use(helmet());
 
 
 //Set up mongoose connection
@@ -31,6 +35,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Use compressor for following routes
+app.use(compression());
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
