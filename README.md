@@ -2,6 +2,7 @@
 
 ## Starting the application
 `
+npm install
 npm start
 `<br/>
 ## Starting an application using nodemon for convinient development 
