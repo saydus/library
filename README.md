@@ -16,4 +16,4 @@ DEBUG=express-locallibrary-tutorial:* npm run devstart
 `<br/> 
 
 
-### An express app for a library to manage its book database.
+
