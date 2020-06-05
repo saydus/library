@@ -5,8 +5,8 @@ Install all dependencies <br/>
 `
 npm install
 `
-<br/>
-Start the application <br/>
+<br/><br/>
+Start the application <br/><br/>
 `
 npm start
 `<br/>
