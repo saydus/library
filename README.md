@@ -1,11 +1,12 @@
 # A library management system implementation
 
 ## Running the application
-Install all dependencies
+Install all dependencies <br/>
 `
 npm install
 `
-Start the application
+<br/>
+Start the application <br/>
 `
 npm start
 `<br/>
