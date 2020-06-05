@@ -6,7 +6,7 @@ Install all dependencies <br/>
 npm install
 `
 <br/><br/>
-Start the application <br/><br/>
+Start the application <br/> 
 `
 npm start
 `<br/>
