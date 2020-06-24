@@ -10,7 +10,7 @@ Start the application <br/>
 `
 npm start
 `<br/><br/>
-Starting an application using nodemon 
+Starting an application using nodemon <br/>
 `
 npm run devstart   
 `<br/> 
