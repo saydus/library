@@ -9,8 +9,8 @@ npm install
 Start the application <br/> 
 `
 npm start
-`<br/>
-## Starting an application using nodemon 
+`<br/><br/>
+Starting an application using nodemon 
 `
 npm run devstart   
 `<br/> 
