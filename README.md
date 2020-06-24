@@ -10,9 +10,9 @@ Start the application <br/>
 `
 npm start
 `<br/>
-## Starting an application using nodemon for convinient development 
+## Starting an application using nodemon 
 `
-DEBUG=express-locallibrary-tutorial:* npm run devstart   
+npm run devstart   
 `<br/> 
 
 
