@@ -1,4 +1,4 @@
-# A library management system implementation
+# A library management system 
 
 ## Running the application
 Install all dependencies <br/>
