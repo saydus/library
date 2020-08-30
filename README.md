@@ -1,4 +1,5 @@
 # A library management system 
+A web-based manager of a catalogue of books, which helps libraries keep track of copies and easily sort books by genres and authors. 
 
 ## Running the application
 Install all dependencies <br/>
